@@ -4,6 +4,8 @@ import datetime
 from jinja2 import Template
 import pdfkit
 import datetime
+import os
+cwd = os.getcwd()
 now = datetime.datetime.now()
 df = pd.DataFrame([
         {'package': 'PEPTize', 'student': 'Yashvant Singh', 'level': 'Level 1'},
@@ -15,6 +17,6 @@ f = open("./templates/index.html", "r")
 template = Template(f.read())
 for index,row in df.iterrows():
     options = {'orientation': 'Landscape'}
-    x=template.render(student=row['student'],level=row['level'],package=row['package'],certdate=now.date())
+    x=template.render(student=row['student'],level=row['level'],package=row['package'],certdate=now.date(),dir=cwd)
     pdfkit.from_string(x,'./output/out'+str(index)+'.pdf',options=options)
 
