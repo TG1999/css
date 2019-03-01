@@ -17,10 +17,10 @@ f = open("./templates/index.html", "r")
 template = Template(f.read())
 for index,row in df.iterrows():
     options = {'page-size':'A4',
-    'margin-top': '0.25in',
-    'margin-right': '0.25in',
-    'margin-bottom': '0.25in',
-    'margin-left': '0.25in',
+    'margin-top': '0in',
+    'margin-right': '0in',
+    'margin-bottom': '0in',
+    'margin-left': '0in',
      'orientation':'Landscape'}
     x=template.render(student=row['student'],level=row['level'],package=row['package'],certdate=now.date(),dir=cwd)
     pdfkit.from_string(x,'./output/out'+str(index)+'.pdf',options=options)
